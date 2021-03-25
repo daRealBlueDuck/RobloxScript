@@ -8,6 +8,8 @@ local folder = window:CreateFolder("Misc")
 local settings = library:CreateWindow("Settings")
 local theme = settings:CreateFolder("Theme")
 local other = settings:CreateFolder("Other Settings")
+local credits = library:CreateWindow("Credits")
+local credit = credits:CreateFolder("Credits")
 local localPlayer = game.Players.LocalPlayer
 local Character = localPlayer.Character
 
@@ -32,9 +34,9 @@ folder:Toggle("Auto Collect", function(t)
     spawn(function()
         while wait() do
             if shared.toggle == true then
-                firetouchinterest(Character.Head, workspace.TycoonKit.Tycoons[tostring(localPlayer.Team)].Essentials.Giver, 0)
+                firetouchinterest(Character.Torso, workspace.TycoonKit.Tycoons[tostring(localPlayer.Team)].Essentials.Giver, 0)
                 wait()
-                firetouchinterest(Character.Head, workspace.TycoonKit.Tycoons[tostring(localPlayer.Team)].Essentials.Giver, 1)
+                firetouchinterest(Character.Torso, workspace.TycoonKit.Tycoons[tostring(localPlayer.Team)].Essentials.Giver, 1)
                 wait(1)
             end
         end
@@ -57,9 +59,9 @@ folder:Toggle("Auto Buy", function(t)
         while wait() do
             if shared.toggle == true then
                 for i,v in ipairs(workspace.TycoonKit.Tycoons[tostring(localPlayer.Team)].Buttons:GetChildren()) do
-                    firetouchinterest(Character.Head, v.Head, 0)
+                    firetouchinterest(Character.Torso, v.Head, 0)
                     wait()
-                    firetouchinterest(Character.Head, v.Head, 1)
+                    firetouchinterest(Character.Torso, v.Head, 1)
                     wait(1)
                 end
             end
@@ -80,3 +82,17 @@ end)
 other:Label("Hide/Show Gui: Right-CTRL", Color3.fromRGB(38,38,38),Color3.fromRGB(255,255,255))
 
 other:DestroyGUI()
+
+credit:Button("Made By Blue Duck#8902")
+credit:Button("Copy Discord", function()
+    if Synapse ~= nil then
+       Synapse:Copy("Blue Duck#8902")
+    elseif setclipboard ~= nil then
+        setclipboard("Blue Duck#8902")
+    elseif Clipboard ~= nil then
+        Clipboard.set("Blue Duck#8902")
+    else
+        warn("Your exploit does not support copy function. If you dont want to pay for exploit, try using KRNL or Fluxus.")
+    end
+end)
+credit:Button("Shoutout to AndroidBoyzFan1#0910 for giving me the idea to make this.")
