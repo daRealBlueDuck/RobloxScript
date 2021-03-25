@@ -51,6 +51,22 @@ folder:Toggle("Auto Click Dropper", function(t)
     end)
 end)
 
+folder:Toggle("Auto Buy", function(t)
+    shared.toggle = t 
+    spawn(function()
+        while wait() do
+            if shared.toggle == true then
+                for i,v in ipairs(workspace.TycoonKit.Tycoons[tostring(localPlayer.Team)].Buttons:GetChildren()) do
+                    firetouchinterest(Character.Head, v.Head, 0)
+                    wait()
+                    firetouchinterest(Character.Head, v.Head, 1)
+                    wait(1)
+                end
+            end
+        end
+    end)
+end)
+
 theme:GuiSettings()
 
 other:Button("Rejoin", function()
