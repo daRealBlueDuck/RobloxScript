@@ -13,6 +13,29 @@ local credit = credits:CreateFolder("Credits")
 local localPlayer = game.Players.LocalPlayer
 local Character = localPlayer.Character
 
+-- Anti Afk
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+
+-- Anti Kick
+local get = getrawmetatable(game)
+local oldnamecall = get.__namecall
+
+setreadonly(get, false)
+
+get.__namecall = newcclosure(function(Self,...)
+    local method = getnamecallmethod()
+    if Self == game.Players.LocalPlayer and tostring(method) == "Kick" then
+        return
+    end
+    return oldnamecall(Self,...)
+end)
+
+
 folder:Button("Kill All", function()
     for i,v in pairs(game.Players:GetPlayers()) do
         if v ~= localPlayer then
