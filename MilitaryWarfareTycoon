@@ -1,0 +1,66 @@
+_G.ToggleColor = Color3.fromRGB(0,255,111)
+_G.ButtonColor = Color3.fromRGB(0,255,111)
+_G.SliderColor = Color3.fromRGB(0,255,111)
+
+local library = loadstring(game:HttpGet(('https://pastebin.com/raw/FsJak6AT')))()
+local window = library:CreateWindow("Military Warfare Tycoon")
+local folder = window:CreateFolder("Misc")
+local settings = library:CreateWindow("Settings")
+local theme = settings:CreateFolder("Theme")
+local other = settings:CreateFolder("Other Settings")
+local localPlayer = game.Players.LocalPlayer
+local Character = localPlayer.Character
+
+folder:Button("Kill All", function()
+    for i,v in pairs(game.Players:GetPlayers()) do
+        if v ~= localPlayer then
+            local ohInstance1 = v.Character.Humanoid
+            local ohInstance2 = v.Character.Torso
+            local ohNumber3 = 100
+            local ohVector34 = Vector3.new(-0.421749353, 0.368492037, -0.828457057)
+            local ohNumber5 = 0
+            local ohNumber6 = 0
+            local ohBoolean7 = false
+            
+            game:GetService("Players").LocalPlayer.Backpack.Handgun.GunScript_Server.InflictTarget:FireServer(ohInstance1, ohInstance2, ohNumber3, ohVector34, ohNumber5, ohNumber6, ohBoolean7) 
+        end
+    end
+end)
+
+folder:Toggle("Auto Collect", function(t)
+    shared.toggle = t
+    spawn(function()
+        while wait() do
+            if shared.toggle == true then
+                firetouchinterest(Character.Head, workspace.TycoonKit.Tycoons[tostring(localPlayer.Team)].Essentials.Giver, 0)
+                wait()
+                firetouchinterest(Character.Head, workspace.TycoonKit.Tycoons[tostring(localPlayer.Team)].Essentials.Giver, 1)
+                wait(1)
+            end
+        end
+    end)
+end)
+
+folder:Toggle("Auto Click Dropper", function(t)
+    shared.toggle = t 
+    spawn(function()
+        while shared.toggle == true do
+            fireclickdetector(workspace.TycoonKit.Tycoons[tostring(localPlayer.Team)].PurchasedObjects.Mine.Clicker.ClickDetector)
+            wait()
+        end
+    end)
+end)
+
+theme:GuiSettings()
+
+other:Button("Rejoin", function()
+    game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, localPlayer) 
+end)
+
+other:Button("Switch Server", function()
+    game:GetService("TeleportService"):Teleport(game.PlaceId, localPlayer) 
+end)
+
+other:Label("Hide/Show Gui: Right-CTRL", Color3.fromRGB(38,38,38),Color3.fromRGB(255,255,255))
+
+other:DestroyGUI()
