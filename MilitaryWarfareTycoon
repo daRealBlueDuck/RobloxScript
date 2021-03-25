@@ -95,4 +95,4 @@ credit:Button("Copy Discord", function()
         warn("Your exploit does not support copy function. If you dont want to pay for exploit, try using KRNL or Fluxus.")
     end
 end)
-credit:Button("Shoutout to AndroidBoyzFan1#0910 for giving me the idea to make this.")
+credit:Button("Thanks to AndroidBoyzFan1#0910 for helping me!")
