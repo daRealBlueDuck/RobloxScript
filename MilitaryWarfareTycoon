@@ -82,10 +82,12 @@ folder:Toggle("Auto Buy", function(t)
         while wait() do
             if shared.toggle == true then
                 for i,v in ipairs(workspace.TycoonKit.Tycoons[tostring(localPlayer.Team)].Buttons:GetChildren()) do
-                    firetouchinterest(Character.Torso, v.Head, 0)
-                    wait()
-                    firetouchinterest(Character.Torso, v.Head, 1)
-                    wait(1)
+                    if v.Name ~= "Buy Multiple Launch Rocket System - Ultra VIP" and v.Name ~= "Buy Military Tank Destroyer - VIP" then
+                        firetouchinterest(Character.Torso, v.Head, 0)
+                        wait()
+                        firetouchinterest(Character.Torso, v.Head, 1)
+                        wait(1)
+                    end
                 end
             end
         end
