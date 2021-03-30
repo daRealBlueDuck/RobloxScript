@@ -91,28 +91,28 @@ local function MakeDraggable(topbarobject, object)
 	)
 end
 
-local Library = Instance.new("ScreenGui")
-Library.Name = "Library"
-Library.Parent = game.CoreGui
-Library.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-local uitoggled = false
-UserInputService.InputBegan:Connect(
-	function(io, p)
-		if io.KeyCode == Enum.KeyCode.RightControl then
-			if uitoggled == false then
-				Library.Enabled = false
-				uitoggled = true
-			else
-				Library.Enabled = true
-				uitoggled = false
-			end
-		end
-	end
-)
-
 function VLib:Window(title, textgame)
-	local FirstTab = false
+	local Library = Instance.new("ScreenGui")
+    Library.Name = title
+    Library.Parent = game.CoreGui
+    Library.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+    local uitoggled = false
+    UserInputService.InputBegan:Connect(
+        function(io, p)
+            if io.KeyCode == Enum.KeyCode.Equals then
+                if uitoggled == false then
+                    Library.Enabled = false
+                    uitoggled = true
+                else
+                    Library.Enabled = true
+                    uitoggled = false
+                end
+            end
+        end
+    )
+    
+    local FirstTab = false
 	local MainFrame = Instance.new("Frame")
 	local MainCorner = Instance.new("UICorner")
 	local LeftFrame = Instance.new("Frame")
